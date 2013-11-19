@@ -24,9 +24,10 @@
 		851190B3183546E2001E47C4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85119092183546E2001E47C4 /* CoreData.framework */; };
 		851190BB183546E2001E47C4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 851190B9183546E2001E47C4 /* InfoPlist.strings */; };
 		851190BE183546E2001E47C4 /* ShowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 851190BD183546E2001E47C4 /* ShowTests.m */; };
-		851190C818354737001E47C4 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 851190C718354737001E47C4 /* Storyboard.storyboard */; };
 		8572075018354FBE00FA8435 /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8572074F18354FBE00FA8435 /* XMLParser.m */; };
 		857207551835657B00FA8435 /* Serie.m in Sources */ = {isa = PBXBuildFile; fileRef = 857207541835657B00FA8435 /* Serie.m */; };
+		85F07DA4183C1A0200497714 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85F07DA3183C1A0200497714 /* Storyboard.storyboard */; };
+		85F07DA7183C1A7800497714 /* SerieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F07DA6183C1A7800497714 /* SerieViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,11 +62,13 @@
 		851190BA183546E2001E47C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		851190BC183546E2001E47C4 /* ShowTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowTests.h; sourceTree = "<group>"; };
 		851190BD183546E2001E47C4 /* ShowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowTests.m; sourceTree = "<group>"; };
-		851190C718354737001E47C4 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		8572074E18354FBE00FA8435 /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
 		8572074F18354FBE00FA8435 /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
 		857207531835657B00FA8435 /* Serie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Serie.h; sourceTree = "<group>"; };
 		857207541835657B00FA8435 /* Serie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Serie.m; sourceTree = "<group>"; };
+		85F07DA3183C1A0200497714 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		85F07DA5183C1A7800497714 /* SerieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerieViewController.h; sourceTree = "<group>"; };
+		85F07DA6183C1A7800497714 /* SerieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerieViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +100,9 @@
 		85119080183546E2001E47C4 = {
 			isa = PBXGroup;
 			children = (
-				851190C718354737001E47C4 /* Storyboard.storyboard */,
+				85F07DA5183C1A7800497714 /* SerieViewController.h */,
+				85F07DA6183C1A7800497714 /* SerieViewController.m */,
+				85F07DA3183C1A0200497714 /* Storyboard.storyboard */,
 				85119094183546E2001E47C4 /* Show */,
 				851190B6183546E2001E47C4 /* ShowTests */,
 				8511908B183546E2001E47C4 /* Frameworks */,
@@ -265,7 +270,7 @@
 				851190A1183546E2001E47C4 /* Default.png in Resources */,
 				851190A3183546E2001E47C4 /* Default@2x.png in Resources */,
 				851190A5183546E2001E47C4 /* Default-568h@2x.png in Resources */,
-				851190C818354737001E47C4 /* Storyboard.storyboard in Resources */,
+				85F07DA4183C1A0200497714 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +308,7 @@
 				8572075018354FBE00FA8435 /* XMLParser.m in Sources */,
 				8511909B183546E2001E47C4 /* main.m in Sources */,
 				857207551835657B00FA8435 /* Serie.m in Sources */,
+				85F07DA7183C1A7800497714 /* SerieViewController.m in Sources */,
 				8511909F183546E2001E47C4 /* AppDelegate.m in Sources */,
 				851190A8183546E2001E47C4 /* Show.xcdatamodeld in Sources */,
 			);

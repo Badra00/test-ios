@@ -1,28 +1,43 @@
 //
 //  XMLParser.h
-//  XMLParserTutorial
+//  Show
 //
-//  Created by Kent Franks on 5/6/11.
-//  Copyright 2011 TheAppCodeBlog. All rights reserved.
+//  Created by Badradine Boulahia on 14/11/2013.
+//  Copyright (c) 2013 baboul. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "Serie.h"
 
 
-@interface XMLParser : NSObject <NSXMLParserDelegate>
-{
+
+@interface XMLParser : NSObject <NSXMLParserDelegate> {
+    //This variable will eventually (once the asynchronous event has completed) hold all the RSSItems in the feed
+    NSMutableArray *allItems;
     
-	NSMutableString	*currentNodeContent;
-	NSMutableArray  *genres;
-	NSXMLParser		*parser;
-	NSManagedObject *newSerie;
-	
+    //This variable will be used to build up the data coming back from NSURLConnection
+    NSMutableData *receivedData;
+    
+    //This item will be declared and created each time a new RSS item is encountered in the XML
+    Serie *currentItem;
+    
+    //This stores the value of the XML element that is currently being processed
+    NSMutableString *currentValue;
+    
+    //This allows the creating object to know when parsing has completed
+    BOOL parsing;
+    
+    //This internal variable allows the object to know if the current property is inside an item element
+    BOOL inItemElement;
 }
 
-@property (readonly, retain) NSMutableArray	*Series;
+@property (nonatomic, readonly) NSMutableArray *allItems;
+@property (nonatomic, retain) NSData *receivedData;
+@property (nonatomic, retain) Serie *currentItem;
+@property (nonatomic, retain) NSMutableString *currentValue;
+@property BOOL parsing;
 
--(id) loadXMLByURL:(NSString *)urlString;
-
+//This method kicks off a parse of a URL at a specified string
+- (void)startParse:(NSString*)url scope:(NSString*)scope;
 
 @end
