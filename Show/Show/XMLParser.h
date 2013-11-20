@@ -9,7 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "Serie.h"
 
+@protocol XMLParserDelegate <NSObject>
 
+- (void)finishParshing;
+
+@end
 
 @interface XMLParser : NSObject <NSXMLParserDelegate> {
     //This variable will eventually (once the asynchronous event has completed) hold all the RSSItems in the feed
@@ -35,9 +39,10 @@
 @property (nonatomic, retain) NSData *receivedData;
 @property (nonatomic, retain) Serie *currentItem;
 @property (nonatomic, retain) NSMutableString *currentValue;
+@property (weak, nonatomic) id<XMLParserDelegate> delegate;
 @property BOOL parsing;
 
 //This method kicks off a parse of a URL at a specified string
-- (void)startParse:(NSString*)url scope:(NSString*)scope;
+- (void)startParse:(NSData *)xmlFile;
 
 @end

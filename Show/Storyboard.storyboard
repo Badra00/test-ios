@@ -5,54 +5,97 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller - Root View Controller-->
-        <scene sceneID="mTD-CP-YRr">
+        <!--Serie Detail View Controller-->
+        <scene sceneID="wSZ-wB-K0y">
             <objects>
-                <tableViewController id="s7T-7L-610" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="gF0-Ev-5RV">
+                <viewController id="Rhv-MP-BWo" customClass="SerieDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="g7w-o5-HSe"/>
+                        <viewControllerLayoutGuide type="bottom" id="v8x-HJ-HJt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RUV-iK-feY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wX5-df-Lxd">
+                                <rect key="frame" x="20" y="256" width="283" height="211"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YSz-83-Y1Y">
+                                <rect key="frame" x="40" y="82" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="VCX-2M-hSj">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="ehY-Ck-6kb"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="banner" destination="YSz-83-Y1Y" id="gsz-5z-nzy"/>
+                        <outlet property="synopsis" destination="wX5-df-Lxd" id="TAK-OH-IeA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6QK-gr-T8X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1138" y="-661"/>
+        </scene>
+        <!--Serie View Controller-->
+        <scene sceneID="i66-dk-71R">
+            <objects>
+                <viewController id="ELh-ti-vax" customClass="SerieViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="LQ7-TI-pj8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="8Fq-8J-Y3j">
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="pQs-ww-MRC">
                             <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
-                                <outlet property="delegate" destination="s7T-7L-610" id="iC8-i9-oa4"/>
+                                <outlet property="delegate" destination="ELh-ti-vax" id="6He-vk-reS"/>
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="2NH-Zi-xiR">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="f9h-E1-JhH">
                                 <rect key="frame" x="0.0" y="130" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" tableViewCell="2NH-Zi-xiR" id="ri3-H1-8LB">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f9h-E1-JhH" id="nnP-5p-DY7">
+                                    <rect key="frame" x="0.0" y="0.0" width="253" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Rhv-MP-BWo" kind="push" identifier="showSerieDetail" id="Yvi-sx-Dit"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="s7T-7L-610" id="xih-CD-Euk"/>
-                            <outlet property="delegate" destination="s7T-7L-610" id="rVV-6E-i52"/>
+                            <outlet property="dataSource" destination="ELh-ti-vax" id="nh6-PD-JNU"/>
+                            <outlet property="delegate" destination="ELh-ti-vax" id="E3c-WA-iTb"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="k7W-i4-Cc0"/>
+                    <navigationItem key="navigationItem" id="QsV-3s-g85"/>
                     <connections>
-                        <outlet property="searchDisplayController" destination="Xf8-ia-mcg" id="TaP-lL-3SU"/>
-                        <outlet property="view" destination="gF0-Ev-5RV" id="vHe-7p-ojQ"/>
+                        <outlet property="searchDisplayController" destination="LV2-Mh-3rP" id="PlO-mf-jLc"/>
+                        <outlet property="tableView" destination="LQ7-TI-pj8" id="A0S-zX-Qm3"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qeL-rl-mdG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="Xf8-ia-mcg">
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d2E-qO-udK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="LV2-Mh-3rP">
                     <connections>
-                        <outlet property="delegate" destination="s7T-7L-610" id="jh2-89-i6F"/>
-                        <outlet property="searchContentsController" destination="s7T-7L-610" id="RI5-aL-4x5"/>
-                        <outlet property="searchResultsDataSource" destination="s7T-7L-610" id="gCQ-CE-WUZ"/>
-                        <outlet property="searchResultsDelegate" destination="s7T-7L-610" id="dRE-fg-hSt"/>
+                        <outlet property="delegate" destination="ELh-ti-vax" id="xbD-az-6jX"/>
+                        <outlet property="searchBar" destination="pQs-ww-MRC" id="Svd-Z9-ofd"/>
+                        <outlet property="searchContentsController" destination="ELh-ti-vax" id="Hnw-VU-in6"/>
+                        <outlet property="searchResultsDataSource" destination="ELh-ti-vax" id="cDj-4C-GSr"/>
+                        <outlet property="searchResultsDelegate" destination="ELh-ti-vax" id="wZW-Fb-kqP"/>
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="603" y="-647"/>
+            <point key="canvasLocation" x="673" y="-661"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="O3g-NX-ni4">
@@ -62,7 +105,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="s7T-7L-610" kind="relationship" relationship="rootViewController" id="Dbc-f0-Gkw"/>
+                        <segue destination="ELh-ti-vax" kind="relationship" relationship="rootViewController" id="EUk-U8-rnr"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O18-FO-g1P" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -26,6 +26,9 @@
 		851190BE183546E2001E47C4 /* ShowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 851190BD183546E2001E47C4 /* ShowTests.m */; };
 		8572075018354FBE00FA8435 /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8572074F18354FBE00FA8435 /* XMLParser.m */; };
 		857207551835657B00FA8435 /* Serie.m in Sources */ = {isa = PBXBuildFile; fileRef = 857207541835657B00FA8435 /* Serie.m */; };
+		85B19A64183D3BD7005A5B50 /* SerieCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B19A63183D3BD7005A5B50 /* SerieCommunicator.m */; };
+		85B19A68183D3E5F005A5B50 /* SerieManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B19A67183D3E5F005A5B50 /* SerieManager.m */; };
+		85BEF721183D61660078B2DB /* SerieDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BEF720183D61660078B2DB /* SerieDetailViewController.m */; };
 		85F07DA4183C1A0200497714 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85F07DA3183C1A0200497714 /* Storyboard.storyboard */; };
 		85F07DA7183C1A7800497714 /* SerieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F07DA6183C1A7800497714 /* SerieViewController.m */; };
 /* End PBXBuildFile section */
@@ -66,6 +69,14 @@
 		8572074F18354FBE00FA8435 /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
 		857207531835657B00FA8435 /* Serie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Serie.h; sourceTree = "<group>"; };
 		857207541835657B00FA8435 /* Serie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Serie.m; sourceTree = "<group>"; };
+		85B19A5F183D3AA4005A5B50 /* SerieCommunicatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerieCommunicatorDelegate.h; sourceTree = "<group>"; };
+		85B19A62183D3BD7005A5B50 /* SerieCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerieCommunicator.h; sourceTree = "<group>"; };
+		85B19A63183D3BD7005A5B50 /* SerieCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerieCommunicator.m; sourceTree = "<group>"; };
+		85B19A65183D3E1F005A5B50 /* SerieManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SerieManagerDelegate.h; sourceTree = "<group>"; };
+		85B19A66183D3E5F005A5B50 /* SerieManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerieManager.h; sourceTree = "<group>"; };
+		85B19A67183D3E5F005A5B50 /* SerieManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerieManager.m; sourceTree = "<group>"; };
+		85BEF71F183D61660078B2DB /* SerieDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerieDetailViewController.h; sourceTree = "<group>"; };
+		85BEF720183D61660078B2DB /* SerieDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerieDetailViewController.m; sourceTree = "<group>"; };
 		85F07DA3183C1A0200497714 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		85F07DA5183C1A7800497714 /* SerieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerieViewController.h; sourceTree = "<group>"; };
 		85F07DA6183C1A7800497714 /* SerieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerieViewController.m; sourceTree = "<group>"; };
@@ -100,6 +111,8 @@
 		85119080183546E2001E47C4 = {
 			isa = PBXGroup;
 			children = (
+				85BEF71F183D61660078B2DB /* SerieDetailViewController.h */,
+				85BEF720183D61660078B2DB /* SerieDetailViewController.m */,
 				85F07DA5183C1A7800497714 /* SerieViewController.h */,
 				85F07DA6183C1A7800497714 /* SerieViewController.m */,
 				85F07DA3183C1A0200497714 /* Storyboard.storyboard */,
@@ -140,6 +153,12 @@
 				8511909E183546E2001E47C4 /* AppDelegate.m */,
 				851190A6183546E2001E47C4 /* Show.xcdatamodeld */,
 				85119095183546E2001E47C4 /* Supporting Files */,
+				85B19A5F183D3AA4005A5B50 /* SerieCommunicatorDelegate.h */,
+				85B19A62183D3BD7005A5B50 /* SerieCommunicator.h */,
+				85B19A63183D3BD7005A5B50 /* SerieCommunicator.m */,
+				85B19A65183D3E1F005A5B50 /* SerieManagerDelegate.h */,
+				85B19A66183D3E5F005A5B50 /* SerieManager.h */,
+				85B19A67183D3E5F005A5B50 /* SerieManager.m */,
 			);
 			path = Show;
 			sourceTree = "<group>";
@@ -307,7 +326,10 @@
 			files = (
 				8572075018354FBE00FA8435 /* XMLParser.m in Sources */,
 				8511909B183546E2001E47C4 /* main.m in Sources */,
+				85B19A64183D3BD7005A5B50 /* SerieCommunicator.m in Sources */,
+				85BEF721183D61660078B2DB /* SerieDetailViewController.m in Sources */,
 				857207551835657B00FA8435 /* Serie.m in Sources */,
+				85B19A68183D3E5F005A5B50 /* SerieManager.m in Sources */,
 				85F07DA7183C1A7800497714 /* SerieViewController.m in Sources */,
 				8511909F183546E2001E47C4 /* AppDelegate.m in Sources */,
 				851190A8183546E2001E47C4 /* Show.xcdatamodeld in Sources */,
@@ -358,7 +380,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -389,7 +411,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;

@@ -7,11 +7,15 @@
 //
 
 #import "SerieViewController.h"
-#import "XMLParser.h"
 #import "Serie.h"
+#import "SerieManager.h"
+#import "SerieCommunicator.h"
+#import "SerieDetailViewController.h"
 
-@interface SerieViewController ()
-
+@interface SerieViewController () <SerieManagerDelegate> {
+    NSArray *_series;
+    SerieManager *_manager;
+}
 @end
 
 @implementation SerieViewController
@@ -20,18 +24,22 @@
 
 - (void)viewDidLoad
 {
+    _manager = [[SerieManager alloc] init];
+    _manager.communicator = [[SerieCommunicator alloc] init];
+    _manager.communicator.delegate = _manager;
+    _manager.delegate = self;
+    
     [super viewDidLoad];
-
-    [xmlParser init];
+    
+    self.title = @"Serie";
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark - SerieManagerDelegate
+- (void)didReceiveSerie:(NSArray *)series
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    _series = series;
+    [self.tableView reloadData];
 }
-
-#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -41,19 +49,19 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [xmlParser.allItems count];
+    return _series.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)inTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+//    if (cell == nil) {
+       UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//    }
 
-    Serie* serie = [xmlParser.allItems objectAtIndex:indexPath.row];
+    Serie* serie = _series[indexPath.row];
     cell.textLabel.text = serie.name;
     
     return cell;
@@ -62,65 +70,27 @@
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller
 shouldReloadTableForSearchString:(NSString *)searchString
 {
-    NSString * url = [@"http://services.tvrage.com/feeds/search.php?show=" stringByAppendingString:searchString];
+    if(![searchString  isEqual: @""]) {
+        searchString = [searchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+        [_manager searchSeriesForName:searchString];
+    }
     
-    
-    
-    [xmlParser startParse:url
-                    scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
     
     return YES;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [self performSegueWithIdentifier: @"showSerieDetail" sender: self];
 }
 
- */
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showSerieDetail"]) {
+        SerieDetailViewController *destViewController = segue.destinationViewController;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        destViewController.serie = _series[indexPath.row];
+    }
+}
 
 @end
