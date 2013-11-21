@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SerieCommunicator.h"
 
 @protocol SerieCommunicatorDelegate
 
-- (void)receivedSeriesXML:(NSData *)xmlFile;
+- (void) receivedSeriesXML:(NSData *)xmlFile;
 
 @end

@@ -9,6 +9,12 @@
 #import "SerieCommunicator.h"
 #import "SerieCommunicatorDelegate.h"
 
+@interface SerieCommunicator () <NSURLConnectionDelegate>
+
+@property (nonatomic, strong, readwrite) NSURLConnection *currentConnection;
+
+@end
+
 @implementation SerieCommunicator
 
 - (void)searchSeriesForName:(NSString *)name
@@ -18,10 +24,16 @@
     NSURL *url = [[NSURL alloc] initWithString:urlAsString];
 //    NSLog(@"%@", urlAsString);
     
+    
     [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:url] queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
         [self.delegate receivedSeriesXML:data];
+        
     }];
+    
 }
+
+#pragma mark - NSURLConnectionDelegate
+
 
 @end

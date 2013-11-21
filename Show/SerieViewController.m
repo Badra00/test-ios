@@ -38,7 +38,7 @@
 - (void)didReceiveSerie:(NSArray *)series
 {
     _series = series;
-    [self.tableView reloadData];
+    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:Nil waitUntilDone:NO];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -55,11 +55,7 @@
 - (UITableViewCell *)tableView:(UITableView *)inTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-//    if (cell == nil) {
-       UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
     Serie* serie = _series[indexPath.row];
     cell.textLabel.text = serie.name;
@@ -67,21 +63,24 @@
     return cell;
 }
 
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller
-shouldReloadTableForSearchString:(NSString *)searchString
-{
-    if(![searchString  isEqual: @""]) {
-        searchString = [searchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-        [_manager searchSeriesForName:searchString];
-    }
-    
-    
-    return YES;
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchString{
+        if(searchString.length > 0) {
+            searchString = [searchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+            [_manager searchSeriesForName:searchString];
+        }
+        else {
+            _series = nil;
+            [self.tableView reloadData];
+        }
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier: @"showSerieDetail" sender: self];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier: @"showSerieDetail" sender: self];
+    NSLog(@"ajout dans la base de donnée");
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
