@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Serie.h"
+#import "XMLParser.h"
 
 @interface SerieDetailViewController : UIViewController
+{
+    XMLParser *xmlParser;
+}
 
 @property (weak, nonatomic) IBOutlet UIImageView *banner;
 @property (weak, nonatomic) IBOutlet UITextView *synopsis;

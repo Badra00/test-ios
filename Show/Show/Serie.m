@@ -10,6 +10,6 @@
 
 @implementation Serie
 
-@synthesize idTvRage, startYear, status, genre, name;
+@synthesize idTvRage, startYear, status, genre, name, idTvDb, pathBanner, bannerName, synopsys;
 
 @end

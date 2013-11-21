@@ -8,19 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Serie : NSObject {
-    NSString  *idTvRage;
-    NSString  *name;
-    NSString  *startYear;
-    NSString  *status;
-    NSArray   *genre;
-}
+@interface Serie : NSObject
 
 @property (nonatomic, retain) NSString  *idTvRage;
+@property (nonatomic, retain) NSString  *idTvDb;
 @property (nonatomic, retain) NSString  *name;
 @property (nonatomic, retain) NSString  *startYear;
 @property (nonatomic, retain) NSString  *status;
 @property (nonatomic, retain) NSArray   *genre;
+@property (nonatomic, retain) NSString  *bannerName;
+@property (nonatomic, retain) NSString  *pathBanner;
+@property (nonatomic, retain) NSString  *synopsys;
 
 
 @end

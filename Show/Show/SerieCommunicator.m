@@ -17,23 +17,23 @@
 
 @implementation SerieCommunicator
 
-- (void)searchSeriesForName:(NSString *)name
+- (void)searchSeriesForName:(NSString *)urlAsString
 {
-    NSString *urlAsString = [@"http://services.tvrage.com/feeds/search.php?show=" stringByAppendingString:name];
+    
     
     NSURL *url = [[NSURL alloc] initWithString:urlAsString];
 //    NSLog(@"%@", urlAsString);
     
+    [_currentConnection cancel];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+    _currentConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
-    [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:url] queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        
-        [self.delegate receivedSeriesXML:data];
-        
-    }];
     
 }
 
 #pragma mark - NSURLConnectionDelegate
-
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [self.delegate receivedSeriesXML:data];
+}
 
 @end

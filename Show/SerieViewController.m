@@ -38,6 +38,7 @@
 - (void)didReceiveSerie:(NSArray *)series
 {
     _series = series;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:Nil waitUntilDone:NO];
 }
 
@@ -59,6 +60,7 @@
 
     Serie* serie = _series[indexPath.row];
     cell.textLabel.text = serie.name;
+    cell.accessoryType = UITableViewCellAccessoryDetailButton;
     
     return cell;
 }
@@ -66,7 +68,14 @@
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchString{
         if(searchString.length > 0) {
             searchString = [searchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-            [_manager searchSeriesForName:searchString];
+            
+            NSString *urlAsString = [@"http://services.tvrage.com/feeds/search.php?show=" stringByAppendingString:searchString];
+            
+            [_manager.communicator searchSeriesForName:urlAsString];
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+            
+            
+
         }
         else {
             _series = nil;
@@ -74,8 +83,9 @@
         }
 }
 
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
-    [self performSegueWithIdentifier: @"showSerieDetail" sender: self];
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier: @"showSerieDetail" sender: indexPath];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -87,7 +97,7 @@
     if ([segue.identifier isEqualToString:@"showSerieDetail"]) {
         SerieDetailViewController *destViewController = segue.destinationViewController;
         
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NSIndexPath *indexPath = [sender isKindOfClass:[NSIndexPath class]] ? (NSIndexPath*)sender : [self.tableView indexPathForSelectedRow];
         destViewController.serie = _series[indexPath.row];
     }
 }

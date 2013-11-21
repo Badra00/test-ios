@@ -24,6 +24,8 @@
 		851190B3183546E2001E47C4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85119092183546E2001E47C4 /* CoreData.framework */; };
 		851190BB183546E2001E47C4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 851190B9183546E2001E47C4 /* InfoPlist.strings */; };
 		851190BE183546E2001E47C4 /* ShowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 851190BD183546E2001E47C4 /* ShowTests.m */; };
+		85305A43183E8BF200B1228A /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 85305A42183E8BF200B1228A /* ImageUtil.m */; };
+		85305A46183EA9E900B1228A /* MySerieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85305A45183EA9E900B1228A /* MySerieViewController.m */; };
 		8572075018354FBE00FA8435 /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8572074F18354FBE00FA8435 /* XMLParser.m */; };
 		857207551835657B00FA8435 /* Serie.m in Sources */ = {isa = PBXBuildFile; fileRef = 857207541835657B00FA8435 /* Serie.m */; };
 		85B19A64183D3BD7005A5B50 /* SerieCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B19A63183D3BD7005A5B50 /* SerieCommunicator.m */; };
@@ -65,6 +67,10 @@
 		851190BA183546E2001E47C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		851190BC183546E2001E47C4 /* ShowTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowTests.h; sourceTree = "<group>"; };
 		851190BD183546E2001E47C4 /* ShowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowTests.m; sourceTree = "<group>"; };
+		85305A41183E8BF200B1228A /* ImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtil.h; sourceTree = "<group>"; };
+		85305A42183E8BF200B1228A /* ImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtil.m; sourceTree = "<group>"; };
+		85305A44183EA9E900B1228A /* MySerieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySerieViewController.h; sourceTree = "<group>"; };
+		85305A45183EA9E900B1228A /* MySerieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySerieViewController.m; sourceTree = "<group>"; };
 		8572074E18354FBE00FA8435 /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
 		8572074F18354FBE00FA8435 /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
 		857207531835657B00FA8435 /* Serie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Serie.h; sourceTree = "<group>"; };
@@ -111,6 +117,8 @@
 		85119080183546E2001E47C4 = {
 			isa = PBXGroup;
 			children = (
+				85305A44183EA9E900B1228A /* MySerieViewController.h */,
+				85305A45183EA9E900B1228A /* MySerieViewController.m */,
 				85BEF71F183D61660078B2DB /* SerieDetailViewController.h */,
 				85BEF720183D61660078B2DB /* SerieDetailViewController.m */,
 				85F07DA5183C1A7800497714 /* SerieViewController.h */,
@@ -159,6 +167,8 @@
 				85B19A65183D3E1F005A5B50 /* SerieManagerDelegate.h */,
 				85B19A66183D3E5F005A5B50 /* SerieManager.h */,
 				85B19A67183D3E5F005A5B50 /* SerieManager.m */,
+				85305A41183E8BF200B1228A /* ImageUtil.h */,
+				85305A42183E8BF200B1228A /* ImageUtil.m */,
 			);
 			path = Show;
 			sourceTree = "<group>";
@@ -332,7 +342,9 @@
 				85B19A68183D3E5F005A5B50 /* SerieManager.m in Sources */,
 				85F07DA7183C1A7800497714 /* SerieViewController.m in Sources */,
 				8511909F183546E2001E47C4 /* AppDelegate.m in Sources */,
+				85305A46183EA9E900B1228A /* MySerieViewController.m in Sources */,
 				851190A8183546E2001E47C4 /* Show.xcdatamodeld in Sources */,
+				85305A43183E8BF200B1228A /* ImageUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

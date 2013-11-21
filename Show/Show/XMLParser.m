@@ -40,8 +40,15 @@
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
-    //If we find an item element, then ensure that the object knows we are inside it, and that the new item is allocated
+    //TVRAGE
     if ([elementName isEqualToString:@"show"])
+    {
+        currentItem = [[Serie alloc] init];
+        inItemElement = true;
+    }
+    
+    //TVDB
+    if ([elementName isEqualToString:@"Series"])
     {
         currentItem = [[Serie alloc] init];
         inItemElement = true;
@@ -52,6 +59,7 @@
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
+    //TVRAGE
     if ([elementName isEqualToString:@"showid"])
 	{
 		currentItem.idTvRage = currentValue;
@@ -74,6 +82,31 @@
 		currentItem = nil;
 		currentValue = nil;
 	}
+    
+    //TVDB
+    if ([elementName isEqualToString:@"seriesid"])
+	{
+		currentItem.idTvDb = currentValue;
+	}
+    if ([elementName isEqualToString:@"banner"])
+	{
+		currentItem.bannerName = currentValue;
+	}
+    if ([elementName isEqualToString:@"Overview"])
+	{
+		currentItem.synopsys = currentValue;
+    }
+    if ([elementName isEqualToString:@"SeriesName"])
+	{
+		currentItem.name = currentValue;
+    }
+    if ([elementName isEqualToString:@"Series"])
+	{
+        [allItems addObject:currentItem];
+		currentItem = nil;
+		currentValue = nil;
+	}
+    
 }
 
 

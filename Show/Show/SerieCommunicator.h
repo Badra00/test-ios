@@ -15,6 +15,6 @@
 
 @property (weak, nonatomic) id<SerieCommunicatorDelegate> delegate;
 
-- (void)searchSeriesForName:(NSString *)name;
+- (void)searchSeriesForName:(NSString *)urlAsString;
 
 @end
