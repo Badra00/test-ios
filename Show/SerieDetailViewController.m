@@ -76,7 +76,7 @@
         NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
     }
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 //- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath

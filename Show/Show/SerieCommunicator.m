@@ -24,16 +24,16 @@
     NSURL *url = [[NSURL alloc] initWithString:urlAsString];
 //    NSLog(@"%@", urlAsString);
     
-    [_currentConnection cancel];
+    [self.currentConnection cancel];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-    _currentConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-    
+    self.currentConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
 #pragma mark - NSURLConnectionDelegate
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [self.delegate receivedSeriesXML:data];
+    if (connection == self.currentConnection) {
+        [self.delegate receivedSeriesXML:data];
+    }
 }
 
 @end
