@@ -12,16 +12,17 @@
 
 @implementation SerieManager
 
-- (void)searchSeriesForName:(NSString *)name
+- (void)searchSeriesForName:(NSString *)name forLanguage:(NSString *)language
 {
-    [self.communicator searchSeriesForName:name];
+    [self.communicator searchSeriesForName:name forLanguage:language];
 }
 
 #pragma mark - SerieCommunicatorDelegate
 
-- (void)receivedSeriesXML:(NSData *)xmlFile
+- (void)receivedSeriesXML:(NSData *)xmlFile forLanguage:(NSString *)language
 {
     parser = [[XMLParser alloc] init];
+    parser.language = language;
     
     [parser startParse:xmlFile];
     

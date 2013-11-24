@@ -16,6 +16,9 @@
 @interface SerieDetailViewController () <SerieManagerDelegate> {
     SerieManager *_manager;
 }
+
+@property (nonatomic, strong, readwrite) NSArray *languages;
+
 @end
 
 @implementation SerieDetailViewController
@@ -51,11 +54,62 @@
 	
     self.title = serie.name;
     
-    NSString *urlAsString = [@"http://thetvdb.com/api/GetSeries.php?seriesname=" stringByAppendingString:[serie.name stringByReplacingOccurrencesOfString:@" " withString:@"%20" ]];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    UIActivityIndicatorView  *av = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    av.frame = CGRectMake(round((self.view.frame.size.width - 25) / 2), round((self.view.frame.size.height - 25) / 2), 25, 25);
+    av.tag  = 1;
+    [self.view addSubview:av];
+    [av startAnimating];
     
-    [_manager.communicator searchSeriesForName:urlAsString];
+//    [_manager.communicator searchSeriesForName:urlAsString];
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    self.languages = [NSArray arrayWithObjects:@"fr",@"en", nil];
+    
+    NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    if (![self.languages containsObject:language]) {
+        language = @"en";
+    }
+    
+//    NSLog(@"%@",[NSString stringWithFormat:@"http://thetvdb.com/api/GetSeries.php?seriesname=%@&language=%@",[serie.name stringByReplacingOccurrencesOfString:@" " withString:@"%20"],language]);
+    //    NSString *urlAsString = [NSString stringWithFormat:@"http://thetvdb.com/api/GetSeries.php?seriesname=%@&language=%@",[serie.name stringByReplacingOccurrencesOfString:@" " withString:@"%20"],language];
+    
+    ImageUtil *imageUtil = [[ImageUtil alloc] init];
+    
+    UIImage *image = [imageUtil getImageFromURL:[@"http://thetvdb.com/banners/" stringByAppendingString:serie.bannerName]];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    
+    BOOL isDir;
+    BOOL exists = [fileManager fileExistsAtPath:[documentsDirectory stringByAppendingString:@"/banners/"] isDirectory:&isDir];
+    if (exists) {
+        if (isDir) {
+            documentsDirectory = [documentsDirectory stringByAppendingString:@"/banners/"];
+        }
+    } else {
+       documentsDirectory = [self createDirectory:@"banners/" atFilePath:documentsDirectory];
+    }
+    
+    //Enregistrement de l'image
+    [imageUtil saveImage:image withFileName:serie.name ofType:@"jpg" inDirectory:documentsDirectory ];
+    
+    serie.pathBanner = [documentsDirectory stringByAppendingString:[NSString stringWithFormat:@"%@.%@", [serie.name stringByReplacingOccurrencesOfString:@" " withString:@"_" ], @"jpg"]];
+    
+    self.synopsis.text = serie.synopsys;
+    self.banner.image = image;
+    
+    UIActivityIndicatorView *tmpimg = (UIActivityIndicatorView *)[self.view viewWithTag:1];
+    [tmpimg removeFromSuperview];
+    
+    [self.view setNeedsDisplay];
+    
+}
+
 
 - (IBAction)add:(id)sender {
     NSManagedObjectContext *context = [self managedObjectContext];
@@ -79,24 +133,20 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-//- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
-//{
-//    [self performSegueWithIdentifier: @"showSerieDetail" sender: indexPath];
-//}
-//
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    NSLog(@"ajout dans la base de donnée");
-//}
-//
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if ([segue.identifier isEqualToString:@"showSerieDetail"]) {
-//        SerieDetailViewController *destViewController = segue.destinationViewController;
-//        
-//        NSIndexPath *indexPath = [sender isKindOfClass:[NSIndexPath class]] ? (NSIndexPath*)sender : [self.tableView indexPathForSelectedRow];
-//        destViewController.serie = _series[indexPath.row];
-//    }
-//}
+-(NSString *)createDirectory:(NSString *)directoryName atFilePath:(NSString *)filePath
+{
+    NSString *filePathAndDirectory = [filePath stringByAppendingPathComponent:directoryName];
+    NSError *error;
+    
+    if (![[NSFileManager defaultManager] createDirectoryAtPath:filePathAndDirectory
+                                   withIntermediateDirectories:NO
+                                                    attributes:nil
+                                                         error:&error])
+    {
+        NSLog(@"Create directory error: %@", error);
+    }
+    return filePathAndDirectory;
+}
 
 #pragma mark - SerieManagerDelegate
 - (void)didReceiveSerie:(NSArray *)series
@@ -109,7 +159,7 @@
             serie.synopsys = s.synopsys;
             
             UIImage *image = [imageUtil getImageFromURL:[@"http://thetvdb.com/banners/" stringByAppendingString:s.bannerName]];
-            [imageUtil saveImage:image withFileName:s.bannerName ofType:@"jpg" inDirectory:@"Document/banners/"];
+            [imageUtil saveImage:image withFileName:s.bannerName ofType:@"jpg" inDirectory:@"Documents/banners/"];
             
             serie.pathBanner = [@"Document/banners/" stringByAppendingString:s.bannerName];
             

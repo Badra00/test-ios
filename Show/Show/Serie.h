@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSString  *bannerName;
 @property (nonatomic, retain) NSString  *pathBanner;
 @property (nonatomic, retain) NSString  *synopsys;
+@property (nonatomic, retain) NSString  *language;
 
 
 @end

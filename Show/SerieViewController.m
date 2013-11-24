@@ -16,6 +16,9 @@
     NSArray *_series;
     SerieManager *_manager;
 }
+
+@property (nonatomic, strong, readwrite) NSArray *languages;
+
 @end
 
 @implementation SerieViewController
@@ -31,6 +34,7 @@
     
     [super viewDidLoad];
     
+    self.languages = [NSArray arrayWithObjects:@"fr",@"en", nil];
     self.title = @"Serie";
 }
 
@@ -69,9 +73,16 @@
         if(searchString.length > 0) {
             searchString = [searchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
             
-            NSString *urlAsString = [@"http://services.tvrage.com/feeds/search.php?show=" stringByAppendingString:searchString];
+            NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
             
-            [_manager.communicator searchSeriesForName:urlAsString];
+            if (![self.languages containsObject:language]) {
+                language = @"en";
+            }
+            
+//            NSLog(@"%@",[NSString stringWithFormat:@"http://thetvdb.com/api/GetSeries.php?seriesname=%@&language=%@",searchString,language]);
+            NSString *urlAsString = [NSString stringWithFormat:@"http://thetvdb.com/api/GetSeries.php?seriesname=%@&language=%@",searchString,language];
+            
+            [_manager.communicator searchSeriesForName:urlAsString forLanguage:language];
             [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
             
             

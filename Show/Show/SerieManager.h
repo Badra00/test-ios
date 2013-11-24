@@ -21,6 +21,6 @@
 @property (strong, nonatomic) SerieCommunicator *communicator;
 @property (weak, nonatomic) id<SerieManagerDelegate> delegate;
 
-- (void)searchSeriesForName:(NSString *)name;
+- (void)searchSeriesForName:(NSString *)name forLanguage:(NSString *)language;
 
 @end

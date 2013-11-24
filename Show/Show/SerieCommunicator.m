@@ -12,14 +12,15 @@
 @interface SerieCommunicator () <NSURLConnectionDelegate>
 
 @property (nonatomic, strong, readwrite) NSURLConnection *currentConnection;
+@property (nonatomic, strong, readwrite) NSString *language;
 
 @end
 
 @implementation SerieCommunicator
 
-- (void)searchSeriesForName:(NSString *)urlAsString
+- (void)searchSeriesForName:(NSString *)urlAsString forLanguage:(NSString *)language
 {
-    
+    self.language = language;
     
     NSURL *url = [[NSURL alloc] initWithString:urlAsString];
 //    NSLog(@"%@", urlAsString);
@@ -32,7 +33,7 @@
 #pragma mark - NSURLConnectionDelegate
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     if (connection == self.currentConnection) {
-        [self.delegate receivedSeriesXML:data];
+        [self.delegate receivedSeriesXML:data forLanguage:self.language];
     }
 }
 

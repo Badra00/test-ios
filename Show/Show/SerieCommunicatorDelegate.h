@@ -11,6 +11,6 @@
 
 @protocol SerieCommunicatorDelegate
 
-- (void) receivedSeriesXML:(NSData *)xmlFile;
+- (void) receivedSeriesXML:(NSData *)xmlFile forLanguage:(NSString *)language;
 
 @end

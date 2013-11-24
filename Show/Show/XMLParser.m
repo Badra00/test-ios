@@ -100,11 +100,17 @@
 	{
 		currentItem.name = currentValue;
     }
+    if ([elementName isEqualToString:@"language"])
+	{
+		currentItem.language = currentValue;
+    }
     if ([elementName isEqualToString:@"Series"])
 	{
-        [allItems addObject:currentItem];
-		currentItem = nil;
-		currentValue = nil;
+        if ([currentItem.language isEqualToString:self.language]) {
+            [allItems addObject:currentItem];
+        }
+        currentItem = nil;
+        currentValue = nil;
 	}
     
 }
@@ -117,6 +123,8 @@
     if (!currentValue)
     {
         currentValue = [[NSMutableString alloc] init];
+        [currentValue appendString:string];
+    } else if(![string isEqualToString:@"\n"]){
         [currentValue appendString:string];
     }
     

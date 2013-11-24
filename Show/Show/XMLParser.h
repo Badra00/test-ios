@@ -39,6 +39,7 @@
 @property (nonatomic, retain) NSData *receivedData;
 @property (nonatomic, retain) Serie *currentItem;
 @property (nonatomic, retain) NSMutableString *currentValue;
+@property (nonatomic, retain) NSString *language;
 @property (weak, nonatomic) id<XMLParserDelegate> delegate;
 @property BOOL parsing;
 

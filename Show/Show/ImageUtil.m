@@ -25,7 +25,10 @@
     if ([[extension lowercaseString] isEqualToString:@"png"]) {
         [UIImagePNGRepresentation(image) writeToFile:[directoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", imageName, @"png"]] options:NSAtomicWrite error:nil];
     } else if ([[extension lowercaseString] isEqualToString:@"jpg"] || [[extension lowercaseString] isEqualToString:@"jpeg"]) {
-        [UIImageJPEGRepresentation(image, 1.0) writeToFile:[directoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", imageName, @"jpg"]] options:NSAtomicWrite error:nil];
+        
+        [UIImageJPEGRepresentation(image, 1.0) writeToFile:[directoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", [imageName stringByReplacingOccurrencesOfString:@" " withString:@"_" ], @"jpg"]] options:NSAtomicWrite error:nil];
+        
+        NSLog(@"%@", [directoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", [imageName stringByReplacingOccurrencesOfString:@" " withString:@"_" ], @"jpg"]]);
     } else {
         NSLog(@"Image Save Failed\nExtension: (%@) is not recognized, use (PNG/JPG)", extension);
     }
